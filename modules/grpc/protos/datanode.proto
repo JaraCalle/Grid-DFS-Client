@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package datanode;
+
+service DataNodeService {
+  rpc UploadBlock (UploadBlockRequest) returns (UploadBlockResponse);
+  rpc DownloadBlock (DownloadBlockRequest) returns (DownloadBlockResponse);
+}
+
+message UploadBlockRequest {
+  string block_id = 1;
+  bytes data = 2;
+}
+
+message UploadBlockResponse {
+  string message = 1;
+}
+
+message DownloadBlockRequest {
+  string block_id = 1;
+}
+
+message DownloadBlockResponse {
+  string block_id = 1;
+  bytes data = 2;
+}
