@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0e\x64\x61tanode.proto\x12\x08\x64\x61tanode\"4\n\x12UploadBlockRequest\x12\x10\n\x08\x62lock_id\x18\x01 \x01(\t\x12\x0c\n\x04\x64\x61ta\x18\x02 \x01(\x0c\"&\n\x13UploadBlockResponse\x12\x0f\n\x07message\x18\x01 \x01(\t\"(\n\x14\x44ownloadBlockRequest\x12\x10\n\x08\x62lock_id\x18\x01 \x01(\t\"7\n\x15\x44ownloadBlockResponse\x12\x10\n\x08\x62lock_id\x18\x01 \x01(\t\x12\x0c\n\x04\x64\x61ta\x18\x02 \x01(\x0c\x32\xaf\x01\n\x0f\x44\x61taNodeService\x12J\n\x0bUploadBlock\x12\x1c.datanode.UploadBlockRequest\x1a\x1d.datanode.UploadBlockResponse\x12P\n\rDownloadBlock\x12\x1e.datanode.DownloadBlockRequest\x1a\x1f.datanode.DownloadBlockResponseb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0e\x64\x61tanode.proto\x12\x08\x64\x61tanode\"4\n\x12UploadBlockRequest\x12\x10\n\x08\x62lock_id\x18\x01 \x01(\t\x12\x0c\n\x04\x64\x61ta\x18\x02 \x01(\x0c\"&\n\x13UploadBlockResponse\x12\x0f\n\x07message\x18\x01 \x01(\t\"(\n\x14\x44ownloadBlockRequest\x12\x10\n\x08\x62lock_id\x18\x01 \x01(\t\"7\n\x15\x44ownloadBlockResponse\x12\x10\n\x08\x62lock_id\x18\x01 \x01(\t\x12\x0c\n\x04\x64\x61ta\x18\x02 \x01(\x0c\"&\n\x12\x44\x65leteBlockRequest\x12\x10\n\x08\x62lock_id\x18\x01 \x01(\t\"&\n\x13\x44\x65leteBlockResponse\x12\x0f\n\x07message\x18\x01 \x01(\t2\xfb\x01\n\x0f\x44\x61taNodeService\x12J\n\x0bUploadBlock\x12\x1c.datanode.UploadBlockRequest\x1a\x1d.datanode.UploadBlockResponse\x12P\n\rDownloadBlock\x12\x1e.datanode.DownloadBlockRequest\x1a\x1f.datanode.DownloadBlockResponse\x12J\n\x0b\x44\x65leteBlock\x12\x1c.datanode.DeleteBlockRequest\x1a\x1d.datanode.DeleteBlockResponseb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -39,6 +39,10 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_DOWNLOADBLOCKREQUEST']._serialized_end=162
   _globals['_DOWNLOADBLOCKRESPONSE']._serialized_start=164
   _globals['_DOWNLOADBLOCKRESPONSE']._serialized_end=219
-  _globals['_DATANODESERVICE']._serialized_start=222
-  _globals['_DATANODESERVICE']._serialized_end=397
+  _globals['_DELETEBLOCKREQUEST']._serialized_start=221
+  _globals['_DELETEBLOCKREQUEST']._serialized_end=259
+  _globals['_DELETEBLOCKRESPONSE']._serialized_start=261
+  _globals['_DELETEBLOCKRESPONSE']._serialized_end=299
+  _globals['_DATANODESERVICE']._serialized_start=302
+  _globals['_DATANODESERVICE']._serialized_end=553
 # @@protoc_insertion_point(module_scope)

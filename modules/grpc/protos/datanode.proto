@@ -5,6 +5,7 @@ package datanode;
 service DataNodeService {
   rpc UploadBlock (UploadBlockRequest) returns (UploadBlockResponse);
   rpc DownloadBlock (DownloadBlockRequest) returns (DownloadBlockResponse);
+  rpc DeleteBlock (DeleteBlockRequest) returns (DeleteBlockResponse);
 }
 
 message UploadBlockRequest {
@@ -23,4 +24,12 @@ message DownloadBlockRequest {
 message DownloadBlockResponse {
   string block_id = 1;
   bytes data = 2;
+}
+
+message DeleteBlockRequest {
+  string block_id = 1;
+}
+
+message DeleteBlockResponse {
+  string message = 1;
 }

@@ -3,7 +3,7 @@
 import grpc
 import warnings
 
-from modules.grpc.generated import datanode_pb2 as datanode__pb2
+import modules.grpc.generated.datanode_pb2 as datanode__pb2
 
 GRPC_GENERATED_VERSION = '1.74.0'
 GRPC_VERSION = grpc.__version__
@@ -44,6 +44,11 @@ class DataNodeServiceStub(object):
                 request_serializer=datanode__pb2.DownloadBlockRequest.SerializeToString,
                 response_deserializer=datanode__pb2.DownloadBlockResponse.FromString,
                 _registered_method=True)
+        self.DeleteBlock = channel.unary_unary(
+                '/datanode.DataNodeService/DeleteBlock',
+                request_serializer=datanode__pb2.DeleteBlockRequest.SerializeToString,
+                response_deserializer=datanode__pb2.DeleteBlockResponse.FromString,
+                _registered_method=True)
 
 
 class DataNodeServiceServicer(object):
@@ -61,6 +66,12 @@ class DataNodeServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def DeleteBlock(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_DataNodeServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -73,6 +84,11 @@ def add_DataNodeServiceServicer_to_server(servicer, server):
                     servicer.DownloadBlock,
                     request_deserializer=datanode__pb2.DownloadBlockRequest.FromString,
                     response_serializer=datanode__pb2.DownloadBlockResponse.SerializeToString,
+            ),
+            'DeleteBlock': grpc.unary_unary_rpc_method_handler(
+                    servicer.DeleteBlock,
+                    request_deserializer=datanode__pb2.DeleteBlockRequest.FromString,
+                    response_serializer=datanode__pb2.DeleteBlockResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -129,6 +145,33 @@ class DataNodeService(object):
             '/datanode.DataNodeService/DownloadBlock',
             datanode__pb2.DownloadBlockRequest.SerializeToString,
             datanode__pb2.DownloadBlockResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def DeleteBlock(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/datanode.DataNodeService/DeleteBlock',
+            datanode__pb2.DeleteBlockRequest.SerializeToString,
+            datanode__pb2.DeleteBlockResponse.FromString,
             options,
             channel_credentials,
             insecure,

@@ -2,7 +2,7 @@ import os
 from core.config import settings
 from utils.files import split_file
 from services.namenode import allocate_file, get_metadata, list_files, remove_file, make_dir, remove_dir
-from services.datanode import upload_block, download_block
+from services.datanode import upload_block, download_block, delete_block
 
 
 def cmd_put(filepath: str):
@@ -53,7 +53,17 @@ def cmd_ls():
 
 def cmd_rm(filename: str):
     resp = remove_file(filename)
-    print(resp)
+    for block in resp["deleted"]["blocks"]:
+        block_id = block["block_id"]
+        datanode_host = block["datanode"]["ip"]
+        datanode_port = block["datanode"]["grpc_port"]
+        
+        try:
+            msg = delete_block(datanode_host, datanode_port, block_id)
+            print(f"[OK] {msg}")
+        except Exception as e:
+            print(f"[WARN] Could not delete block {block_id}: {e}")
+
 
 def cmd_mkdir(dirname: str):
     resp = make_dir(dirname)

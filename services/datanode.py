@@ -14,3 +14,10 @@ def download_block(datanode_host: str, datanode_port: int, block_id: str):
     request = datanode_pb2.DownloadBlockRequest(block_id=block_id) # type: ignore
     response = stub.DownloadBlock(request)
     return response.data
+
+def delete_block(datanode_host: str, datanode_port: int, block_id: str):
+    channel = grpc.insecure_channel(f"{datanode_host}:{datanode_port}")
+    stub = datanode_pb2_grpc.DataNodeServiceStub(channel)
+    request = datanode_pb2.DeleteBlockRequest(block_id=block_id) # type: ignore
+    response = stub.DeleteBlock(request)
+    return response.message

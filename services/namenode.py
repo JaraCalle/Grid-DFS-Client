@@ -29,7 +29,7 @@ def list_files():
     resp.raise_for_status()
     return resp.json()
 
-def remove_file(filename: str):
+def remove_file(filename: str) -> dict:
     url = f"{settings.NAMENODE_URL}/namenode/rm/{filename}"
     headers = {"Authorization": f"Bearer {get_token()}"}
     resp = requests.delete(url, headers=headers)
