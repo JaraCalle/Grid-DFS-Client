@@ -38,6 +38,19 @@ def main():
     # tree
     subparsers.add_parser("tree", help="Muestra el árbol de directorios y archivos")
 
+    # register
+    register_parser = subparsers.add_parser("register", help="Registrar un nuevo usuario")
+    register_parser.add_argument("username", type=str)
+    register_parser.add_argument("password", type=str)
+
+    # login
+    login_parser = subparsers.add_parser("login", help="Iniciar sesión")
+    login_parser.add_argument("username", type=str)
+    login_parser.add_argument("password", type=str)
+
+    # logout
+    subparsers.add_parser("logout", help="Cerrar sesión")
+
     args = parser.parse_args()
 
     if args.command == "put":
@@ -54,6 +67,12 @@ def main():
         cmd_rmdir(args.dirname, args.parent)
     elif args.command == "tree":
         cmd_tree()
+    elif args.command == "register":
+        cmd_register(args.username, args.password)
+    elif args.command == "login":
+        cmd_login(args.username, args.password)
+    elif args.command == "logout":
+        cmd_logout()
 
 if __name__ == "__main__":
     main()

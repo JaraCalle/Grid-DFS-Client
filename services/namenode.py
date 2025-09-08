@@ -1,15 +1,15 @@
 import requests
 from core.config import settings
-from services.auth import get_token
+from services.auth import get_token, get_owner
 
 def allocate_file(filename: str, filesize: int, block_size: int, directory: str = "/"):
     url = f"{settings.NAMENODE_URL}/namenode/allocate"
     headers = {"Authorization": f"Bearer {get_token()}"}
     payload = {
-        "filename": filename, 
-        "filesize": filesize, 
+        "filename": filename,
+        "filesize": filesize,
         "block_size": block_size,
-        "owner": "admin",
+        "owner": get_owner(),
         "directory": directory
     }
     resp = requests.post(url, json=payload, headers=headers)

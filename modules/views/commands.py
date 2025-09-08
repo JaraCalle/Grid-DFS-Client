@@ -3,7 +3,7 @@ from core.config import settings
 from utils.files import split_file
 from services.namenode import allocate_file, get_metadata, list_files, remove_file, make_dir, remove_dir, get_tree
 from services.datanode import upload_block, download_block, delete_block
-
+from services.auth import register_user, login_user, logout_user
 
 def cmd_put(filepath: str, directory: str = "/"):
     filename = os.path.basename(filepath)
@@ -101,3 +101,15 @@ def cmd_tree():
         return
     print("/")
     _print_tree(tree["/"])
+
+def cmd_register(username: str, password: str):
+    resp = register_user(username, password)
+    print(resp["msg"])
+
+def cmd_login(username: str, password: str):
+    resp = login_user(username, password)
+    print(resp["msg"])
+
+def cmd_logout():
+    resp = logout_user()
+    print(resp["msg"])
