@@ -68,7 +68,18 @@ def cmd_mkdir(dirname: str, parent: str = "/"):
 
 def cmd_rmdir(dirname: str, parent: str = "/"):
     resp = remove_dir(dirname, parent)
-    print(resp)
+    print(resp["msg"])
+
+    for block in resp.get("deleted_blocks", []):
+        dn_ip = block["datanode"]["ip"]
+        dn_port = block["datanode"]["grpc_port"]
+        block_id = block["block_id"]
+
+        try:
+            msg = delete_block(dn_ip, dn_port, block_id)
+            print(f"[OK] Deleted block {block_id} from {dn_ip}:{dn_port} -> {msg}")
+        except Exception as e:
+            print(f"[WARN] Could not delete block {block_id} from {dn_ip}:{dn_port} -> {e}")
 
 def _print_tree(node: dict, prefix: str = ""):
     # Archivos en el directorio actual
